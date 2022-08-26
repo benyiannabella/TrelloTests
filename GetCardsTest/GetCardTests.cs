@@ -1,7 +1,4 @@
 
-
-using Newtonsoft.Json.Schema;
-
 namespace GetCardsTest
 {
     public class GetCardTests
@@ -50,5 +47,6 @@ namespace GetCardsTest
 
             Assert.True(responseContent.IsValid(jsonSchema));
         }
+
     }
 }
