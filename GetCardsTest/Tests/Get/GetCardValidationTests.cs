@@ -1,8 +1,8 @@
-
 using GetCardsTest.Arguments.Holders;
 using GetCardsTest.Arguments.Providers;
+using GetCardsTest.Constants;
 
-namespace GetCardsTest
+namespace GetCardsTest.Tests.Get
 {
     public class GetCardValidationTests : BaseTest
     {
@@ -10,7 +10,7 @@ namespace GetCardsTest
         [TestCaseSource(typeof(CardIdArgumentProvider))]
         public void CheckGetCardWithInvalidId(CardIDArgumentHolder cardIDArgument)
         {
-            var request = RequestWithAuth("/1/cards/{cardId}")
+            var request = RequestWithAuth(CardEndpoints.GetACardUrl)
                 .AddOrUpdateParameters(cardIDArgument.PathParams);
 
             var response = _client.Get(request);
@@ -24,7 +24,7 @@ namespace GetCardsTest
         [TestCaseSource(typeof(CardNoAuthArgumentProvider))]
         public void CheckGetCardWithInvalidAut(CardIDArgumentHolder cardIDArgument)
         {
-            var request = RequestWithoutAuth("/1/cards/{cardId}")
+            var request = RequestWithoutAuth(CardEndpoints.GetACardUrl)
                 .AddOrUpdateParameters(cardIDArgument.PathParams);
 
             var response = _client.Get(request);
@@ -38,9 +38,9 @@ namespace GetCardsTest
         [TestCaseSource(typeof(CardOtherAuthArgumentProvider))]
         public void CheckGetCardWithOtherKeyOrToken(CardIDArgumentHolder cardIDArgument)
         {
-            var request = RequestWithoutAuth("/1/cards/{cardId}")
+            var request = RequestWithoutAuth(CardEndpoints.GetACardUrl)
                 .AddOrUpdateParameters(cardIDArgument.PathParams)
-                .AddUrlSegment("cardId", "6305f551c2aef000f7ed1c5d");
+                .AddUrlSegment("cardId", UrlParamValues.CardId);
 
             var response = _client.Get(request);
 

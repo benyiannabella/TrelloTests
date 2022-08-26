@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="D:\Programming\C#\API testing\TrelloTests\GetCardsTest\GetCardTests.cs" Link="GetCardTests.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.15-beta2" />
     <PackageReference Include="NUnit" Version="3.13.3" />
@@ -29,6 +25,16 @@
     <None Update="Resources\Schemas\get_cards_on_board.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Tests\Delete\" />
+    <Folder Include="Tests\Put\" />
+    <Folder Include="Tests\Post\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Tests\Get\GetCardTests.cs" Link="Tests\Get\GetCardTests.cs" />
   </ItemGroup>
 
 </Project>

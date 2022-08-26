@@ -1,14 +1,16 @@
+using GetCardsTest.Constants;
+using GetCardsTest.Tests;
 
-namespace GetCardsTest
+namespace GetCardsTest.Tests.Get
 {
     public class GetCardTests : BaseTest
-    {        
+    {
         [Test]
         public void CheckGetCardsOnABoard()
         {
-            var request = RequestWithAuth("/1/boards/{boardId}/cards")
+            var request = RequestWithAuth(CardEndpoints.GetCardsUrl)
                     .AddQueryParameter("fields", "id,name")
-                    .AddUrlSegment("boardId", "6305229b7fad4400600293ff");
+                    .AddUrlSegment("boardId", UrlParamValues.BoardId);
 
             var response = _client.Get(request);
 
@@ -23,9 +25,9 @@ namespace GetCardsTest
         [Test]
         public void CheckGetACard()
         {
-            var request = RequestWithAuth("/1/cards/{cardId}")
+            var request = RequestWithAuth(CardEndpoints.GetACardUrl)
                 .AddQueryParameter("fields", "id,name")
-                .AddUrlSegment("cardId", "6305f551c2aef000f7ed1c5d");
+                .AddUrlSegment("cardId", UrlParamValues.CardId);
 
             var response = _client.Get(request);
 

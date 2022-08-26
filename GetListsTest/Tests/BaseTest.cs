@@ -1,9 +1,10 @@
-﻿
-namespace GetListsTest
+﻿using GetListsTest.Constants;
+
+namespace GetListsTest.Tests
 {
     public class BaseTest
     {
-        
+
         protected static IRestClient _client;
 
         [OneTimeSetUp]
@@ -11,8 +12,8 @@ namespace GetListsTest
 
         protected IRestRequest RequestWithAuth(string url) =>
             RequestWithoutAuth(url)
-                .AddQueryParameter("key", "9412ec2fd86e5bd8a69c359da63744d8")
-                .AddQueryParameter("token", "868e793c460a02759265b6da6ab8f535c08653d91045ae4a06eff6adfe6fc2c1");
+                .AddQueryParameter("key", UrlParamValues.Key)
+                .AddQueryParameter("token",UrlParamValues.Token);
 
         protected IRestRequest RequestWithoutAuth(string url) =>
             new RestRequest(url);

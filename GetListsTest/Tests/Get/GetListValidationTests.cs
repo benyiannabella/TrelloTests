@@ -1,8 +1,9 @@
 using GetListsTest.Arguments.Holders;
 using GetListsTest.Arguments.Providers;
+using GetListsTest.Constants;
 using NUnit.Framework.Internal;
 
-namespace GetListsTest
+namespace GetListsTest.Tests.Get
 {
     public class GetListValidationTests : BaseTest
     {
@@ -10,7 +11,7 @@ namespace GetListsTest
         [TestCaseSource(typeof(ListsValidBoardIDArgumentProvider))]
         public void CheckGetListsOnABoard(ListsArgumentHolder listsValidIDArgument)
         {
-            var request = RequestWithAuth("/1/boards/{boardId}/lists")
+            var request = RequestWithAuth(ListEndpoint.GetListsUrl)
                 .AddQueryParameter("fields", "id,name")
                 .AddOrUpdateParameters(listsValidIDArgument.PathParam);
 
@@ -27,7 +28,7 @@ namespace GetListsTest
         [TestCaseSource(typeof(ListValidIDArgumentProvider))]
         public void CheckGetListById(ListsArgumentHolder listsValidIDArgument)
         {
-            var request = RequestWithAuth("/1/lists/{id}")
+            var request = RequestWithAuth(ListEndpoint.GetAListUrl)
                 .AddQueryParameter("fields", "id,name")
                 .AddOrUpdateParameters(listsValidIDArgument.PathParam);
 
@@ -46,7 +47,7 @@ namespace GetListsTest
         [TestCaseSource(typeof(ListInvalidIDArgumentProvider))]
         public void ChekGetListWithInvalidId(ListsArgumentHolder listsArgument)
         {
-            var request = RequestWithAuth("/1/lists/{id}")
+            var request = RequestWithAuth(ListEndpoint.GetAListUrl)
                 .AddOrUpdateParameters(listsArgument.PathParam);
 
             var response = _client.Get(request);
@@ -59,7 +60,7 @@ namespace GetListsTest
         [TestCaseSource(typeof(ListInvalidAuthArgumentProvider))]
         public void CheckGetListWithInvalidAuth(ListsArgumentHolder listsArgument)
         {
-            var request = RequestWithoutAuth("/1/lists/{id}")
+            var request = RequestWithoutAuth(ListEndpoint.GetAListUrl)
                 .AddQueryParameter("fields", "id,name")
                 .AddOrUpdateParameters(listsArgument.PathParam);
 
@@ -73,7 +74,7 @@ namespace GetListsTest
         [TestCaseSource(typeof(ListAuthOtherArgumentProvider))]
         public void CheckGetListWithOtherAuth(ListsArgumentHolder listsArgument)
         {
-            var request = RequestWithoutAuth("/1/lists/{id}")
+            var request = RequestWithoutAuth(ListEndpoint.GetAListUrl)
                 .AddQueryParameter("fields", "id,name")
                 .AddOrUpdateParameters(listsArgument.PathParam);
 

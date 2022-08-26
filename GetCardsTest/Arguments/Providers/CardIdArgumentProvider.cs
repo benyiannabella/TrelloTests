@@ -1,4 +1,5 @@
 ﻿using GetCardsTest.Arguments.Holders;
+using GetCardsTest.Constants;
 using System.Collections;
 
 namespace GetCardsTest.Arguments.Providers
@@ -23,7 +24,7 @@ namespace GetCardsTest.Arguments.Providers
                 {
                     ErrorMessage = "The requested resource was not found.",
                     StatusCode = HttpStatusCode.NotFound,
-                    PathParams = new[] {new Parameter("cardId", "6305f551c2aef000f7ed1c5c", ParameterType.UrlSegment)}
+                    PathParams = new[] {new Parameter("cardId",UrlParamValues.InvalidCardId, ParameterType.UrlSegment)}
                 }
             };
         }

@@ -1,5 +1,6 @@
 ﻿
 using GetCardsTest.Arguments.Holders;
+using GetCardsTest.Constants;
 
 namespace GetCardsTest.Arguments.Providers
 {
@@ -11,7 +12,7 @@ namespace GetCardsTest.Arguments.Providers
             {
                 new CardIDArgumentHolder
                 {
-                    PathParams = new[]{new Parameter("cardId", "6305f551c2aef000f7ed1c5d", ParameterType.UrlSegment)},
+                    PathParams = new[]{new Parameter("cardId", UrlParamValues.CardId, ParameterType.UrlSegment)},
                     StatusCode = HttpStatusCode.Unauthorized,
                     ErrorMessage  = "unauthorized card permission requested"
                 }

@@ -1,5 +1,6 @@
 ﻿
 using GetListsTest.Arguments.Holders;
+using GetListsTest.Constants;
 
 namespace GetListsTest.Arguments.Providers
 {
@@ -11,7 +12,7 @@ namespace GetListsTest.Arguments.Providers
             {
                 new ListsArgumentHolder
                 {
-                    PathParam = new[]{new Parameter("id", "6305229b7fad440060029406", ParameterType.UrlSegment)},
+                    PathParam = new[]{new Parameter("id", UrlParamValues.ListId, ParameterType.UrlSegment)},
                     StatusCode = HttpStatusCode.Unauthorized,
                     ErrorMessage  = "unauthorized permission requested"
                 }

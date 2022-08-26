@@ -1,5 +1,6 @@
 ﻿
 using GetListsTest.Arguments.Holders;
+using GetListsTest.Constants;
 
 namespace GetListsTest.Arguments.Providers
 {
@@ -12,7 +13,7 @@ namespace GetListsTest.Arguments.Providers
             {
                 new ListsArgumentHolder
                 {
-                    PathParam = new[]{new Parameter("boardId", "6305229b7fad4400600293ff", ParameterType.UrlSegment)},
+                    PathParam = new[]{new Parameter("boardId", UrlParamValues.BoardId, ParameterType.UrlSegment)},
                     StatusCode = HttpStatusCode.OK,
                     ErrorMessage = "To Do"
                 }

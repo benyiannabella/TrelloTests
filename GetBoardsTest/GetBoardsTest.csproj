@@ -27,4 +27,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tests\Delete\" />
+    <Folder Include="Tests\Put\" />
+    <Folder Include="Tests\Post\" />
+  </ItemGroup>
+
 </Project>

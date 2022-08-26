@@ -1,5 +1,6 @@
 ﻿
 using GetCardsTest.Arguments.Holders;
+using GetCardsTest.Constants;
 
 namespace GetCardsTest.Arguments.Providers
 {
@@ -11,8 +12,8 @@ namespace GetCardsTest.Arguments.Providers
             {
                 new CardIDArgumentHolder
                 {
-                   PathParams = new[]{new Parameter("key", "9412ec2fd86e5bd8a69c359da63744d7", ParameterType.QueryString),
-                       new Parameter("token", "868e793c460a02759265b6da6ab8f535c08653d91045ae4a06eff6adfe6fc2c1", ParameterType.QueryString)},
+                   PathParams = new[]{new Parameter("key", UrlParamValues.OtherKey, ParameterType.QueryString),
+                       new Parameter("token", UrlParamValues.Token, ParameterType.QueryString)},
                    ErrorMessage = "invalid key",
                    StatusCode = HttpStatusCode.Unauthorized
                 }
@@ -23,8 +24,8 @@ namespace GetCardsTest.Arguments.Providers
             {
                 new CardIDArgumentHolder
                 {
-                   PathParams = new[]{ new Parameter("key", "9412ec2fd86e5bd8a69c359da63744d8", ParameterType.QueryString),
-                       new Parameter("token", "868e793c460a02759265b6da6ab8f535c08653d91045ae4a06eff6adfe6fc2c2", ParameterType.QueryString)},
+                   PathParams = new[]{ new Parameter("key", UrlParamValues.Key, ParameterType.QueryString),
+                       new Parameter("token", UrlParamValues.OtherToken, ParameterType.QueryString)},
                    ErrorMessage = "invalid token",
                    StatusCode = HttpStatusCode.Unauthorized
                 }

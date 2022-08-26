@@ -1,14 +1,16 @@
+using GetBoardsTest.Constants;
+using GetBoardsTest.Tests;
 
-namespace GetBoardsTest
+namespace GetBoardsTest.Tests.Get
 {
     public class GetBoardsTests : BaseTest
     {
         [Test]
         public void CheckGetBoards()
         {
-            var request = RequestWitAuth("/1/members/{memberId}/boards")
+            var request = RequestWitAuth(BoardsEndpoints.GetBoardsUrl)
                 .AddQueryParameter("fields", "id,name")
-                .AddUrlSegment("memberId", "annabellabenyi1");
+                .AddUrlSegment("memberId", UrlParamValues.UserId);
 
             var response = _client.Get(request);
 
@@ -23,9 +25,9 @@ namespace GetBoardsTest
         [Test]
         public void CheckGetBoard()
         {
-           var request = RequestWitAuth("/1/boards/{boardId}")
-                .AddQueryParameter("fields", "id,name")
-                .AddUrlSegment("boardId", "63067787a84cf200b6d77500");
+            var request = RequestWitAuth(BoardsEndpoints.GetABoardUrl)
+                 .AddQueryParameter("fields", "id,name")
+                 .AddUrlSegment("boardId", UrlParamValues.BoardId);
 
             var response = _client.Get(request);
 
