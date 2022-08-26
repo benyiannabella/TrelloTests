@@ -1,18 +1,8 @@
 
 namespace GetCardsTest
 {
-    public class GetCardValidationTests
+    public class GetCardValidationTests : BaseTest
     {
-        private static IRestClient _client;
-
-        [OneTimeSetUp]
-        public static void InitializeRestClient() => _client = new RestClient("https://api.trello.com");
-
-        private IRestRequest RequestWithAuth(string url) => 
-            new RestRequest(url)
-                .AddQueryParameter("key", "9412ec2fd86e5bd8a69c359da63744d8")
-                .AddQueryParameter("token", "868e793c460a02759265b6da6ab8f535c08653d91045ae4a06eff6adfe6fc2c1");
-
         [Test]
         public void CheckGetCardsOnABoard()
         {
@@ -64,7 +54,7 @@ namespace GetCardsTest
         [Test]
         public void CheckGetCardWithInvalidAut()
         {
-            var request = new RestRequest("/1/cards/{cardId}")
+            var request = RequestWithoutAuth("/1/cards/{cardId}")
                 .AddUrlSegment("cardId", "6305f551c2aef000f7ed1c5d");
 
             var response = _client.Get(request);
@@ -77,7 +67,7 @@ namespace GetCardsTest
         [Test]
         public void CheckGetCardWithOtherToken()
         {
-            var request = new RestRequest("/1/cards/{cardId}")
+            var request = RequestWithoutAuth("/1/cards/{cardId}")
                 .AddQueryParameter("key", "9412ec2fd86e5bd8a69c359da63744d8")
                 .AddQueryParameter("token", "868e793c460a02759265b6da6ab8f535c08653d91045ae4a06eff6adfe6fc2c2")
                 .AddUrlSegment("cardId", "6305f551c2aef000f7ed1c5d");
@@ -91,7 +81,7 @@ namespace GetCardsTest
         [Test]
         public void CheckGetCardWithOtherKey()
         {
-            var request = new RestRequest("/1/cards/{cardId}")
+            var request = RequestWithoutAuth("/1/cards/{cardId}")
                 .AddQueryParameter("key", "9412ec2fd86e5bd8a69c359da63744d7")
                 .AddQueryParameter("token", "868e793c460a02759265b6da6ab8f535c08653d91045ae4a06eff6adfe6fc2c1")
                 .AddUrlSegment("cardId", "6305f551c2aef000f7ed1c5d");

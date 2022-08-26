@@ -6,7 +6,7 @@ namespace GetBoardsTest
         protected static IRestClient _client;
 
         [OneTimeSetUp]
-        public static void InitializeRestClient() =>
+        protected static void InitializeRestClient() =>
             _client = new RestClient("https://api.trello.com");
 
         protected IRestRequest RequestWitAuth(string url) =>
