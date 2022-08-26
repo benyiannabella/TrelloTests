@@ -1,95 +1,52 @@
 
+using GetCardsTest.Arguments.Holders;
+using GetCardsTest.Arguments.Providers;
+
 namespace GetCardsTest
 {
     public class GetCardValidationTests : BaseTest
     {
         [Test]
-        public void CheckGetCardsOnABoard()
-        {
-            var request = RequestWithAuth("/1/boards/{boardId}/cards")
-                    .AddQueryParameter("fields", "id,name")
-                    .AddUrlSegment("boardId", "6305229b7fad4400600293ff");
-
-            var response = _client.Get(request);
-
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-
-            var responseContent = JToken.Parse(response.Content);
-            var jsonSchema = JSchema.Parse(File.ReadAllText($"{Directory.GetCurrentDirectory()}/Resources/Schemas/get_cards_on_board.json"));
-
-            Assert.True(responseContent.IsValid(jsonSchema));
-        }
-
-        [Test]
-        public void CheckGetACard()
+        [TestCaseSource(typeof(CardIdArgumentProvider))]
+        public void CheckGetCardWithInvalidId(CardIDArgumentHolder cardIDArgument)
         {
             var request = RequestWithAuth("/1/cards/{cardId}")
-                .AddQueryParameter("fields", "id,name")
-                .AddUrlSegment("cardId", "6305f551c2aef000f7ed1c5d");
+                .AddOrUpdateParameters(cardIDArgument.PathParams);
 
             var response = _client.Get(request);
 
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            Assert.That(JToken.Parse(response.Content).SelectToken("name").ToString, Is.EqualTo("updating my first card"));
-
-            var responseContent = JToken.Parse(response.Content);
-            var jsonSchema = JSchema.Parse(File.ReadAllText($"{Directory.GetCurrentDirectory()}/Resources/Schemas/get_a_card.json"));
-
-            Assert.True(responseContent.IsValid(jsonSchema));
-        }
-
-        [Test]
-        public void CheckGetCardWithInvalidId()
-        {
-            var request = RequestWithAuth("/1/cards/{cardId}")
-                .AddUrlSegment("cardId", "invalid");
-
-            var response = _client.Get(request);
-
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
-            Assert.That(response.Content, Is.EqualTo("invalid id"));
+            Assert.That(response.StatusCode, Is.EqualTo(cardIDArgument.StatusCode));
+            Assert.That(response.Content, Is.EqualTo(cardIDArgument.ErrorMessage));
 
         }
 
         [Test]
-        public void CheckGetCardWithInvalidAut()
+        [TestCaseSource(typeof(CardNoAuthArgumentProvider))]
+        public void CheckGetCardWithInvalidAut(CardIDArgumentHolder cardIDArgument)
         {
             var request = RequestWithoutAuth("/1/cards/{cardId}")
-                .AddUrlSegment("cardId", "6305f551c2aef000f7ed1c5d");
+                .AddOrUpdateParameters(cardIDArgument.PathParams);
 
             var response = _client.Get(request);
 
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
-            Assert.That(response.Content, Is.EqualTo("unauthorized card permission requested"));
+            Assert.That(response.StatusCode, Is.EqualTo(cardIDArgument.StatusCode));
+            Assert.That(response.Content, Is.EqualTo(cardIDArgument.ErrorMessage));
         }
 
 
         [Test]
-        public void CheckGetCardWithOtherToken()
+        [TestCaseSource(typeof(CardOtherAuthArgumentProvider))]
+        public void CheckGetCardWithOtherKeyOrToken(CardIDArgumentHolder cardIDArgument)
         {
             var request = RequestWithoutAuth("/1/cards/{cardId}")
-                .AddQueryParameter("key", "9412ec2fd86e5bd8a69c359da63744d8")
-                .AddQueryParameter("token", "868e793c460a02759265b6da6ab8f535c08653d91045ae4a06eff6adfe6fc2c2")
+                .AddOrUpdateParameters(cardIDArgument.PathParams)
                 .AddUrlSegment("cardId", "6305f551c2aef000f7ed1c5d");
 
             var response = _client.Get(request);
 
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
-            Assert.That(response.Content, Is.EqualTo("invalid token"));
+            Assert.That(response.StatusCode, Is.EqualTo(cardIDArgument.StatusCode));
+            Assert.That(response.Content, Is.EqualTo(cardIDArgument.ErrorMessage));
         }
 
-        [Test]
-        public void CheckGetCardWithOtherKey()
-        {
-            var request = RequestWithoutAuth("/1/cards/{cardId}")
-                .AddQueryParameter("key", "9412ec2fd86e5bd8a69c359da63744d7")
-                .AddQueryParameter("token", "868e793c460a02759265b6da6ab8f535c08653d91045ae4a06eff6adfe6fc2c1")
-                .AddUrlSegment("cardId", "6305f551c2aef000f7ed1c5d");
-
-            var response = _client.Get(request);
-
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
-            Assert.That(response.Content, Is.EqualTo("invalid key"));
-        }
     }
 }

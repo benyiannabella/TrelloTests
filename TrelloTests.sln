@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetBoardsTest", "GetBoardsT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetCardsTest", "GetCardsTest\GetCardsTest.csproj", "{B2207214-7F65-4D0C-BFDF-772B0D3F5B0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetListsTest", "GetListsTest\GetListsTest.csproj", "{E67B0054-CA52-4DE0-825E-AB23676A3AD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B2207214-7F65-4D0C-BFDF-772B0D3F5B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2207214-7F65-4D0C-BFDF-772B0D3F5B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2207214-7F65-4D0C-BFDF-772B0D3F5B0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E67B0054-CA52-4DE0-825E-AB23676A3AD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E67B0054-CA52-4DE0-825E-AB23676A3AD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E67B0054-CA52-4DE0-825E-AB23676A3AD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E67B0054-CA52-4DE0-825E-AB23676A3AD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
