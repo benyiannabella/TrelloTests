@@ -3,19 +3,8 @@
 
 namespace GetBoardsTest
 {
-    public class GetBoardsValidaionTests
+    public class GetBoardsValidaionTests : BaseTest
     {
-
-        private static IRestClient _client;
-
-        [OneTimeSetUp]
-        public static void InitializeRestClient() =>
-            _client = new RestClient("https://api.trello.com");
-
-        private IRestRequest RequestWitAuth(string url) =>
-            new RestRequest(url)
-                .AddQueryParameter("key", "9412ec2fd86e5bd8a69c359da63744d8")
-                .AddQueryParameter("token", "868e793c460a02759265b6da6ab8f535c08653d91045ae4a06eff6adfe6fc2c1");
 
         [Test]
         public void CheckGetBoards()
@@ -69,7 +58,7 @@ namespace GetBoardsTest
         [Test]
         public void CheckGetBoardWithInvlidAuth()
         {
-            var request = new RestRequest("/1/boards/{boardId}")
+            var request = RequestWithoutAuth("/1/boards/{boardId}")
                .AddUrlSegment("boardId", "63067787a84cf200b6d77500");
 
             var response = _client.Get(request);
@@ -81,7 +70,7 @@ namespace GetBoardsTest
         [Test]
         public void CheckGetBoardWithOtherUsersToken()
         {
-            var request = new RestRequest("/1/boards/{boardId}")
+            var request = RequestWithoutAuth("/1/boards/{boardId}")
                 .AddQueryParameter("key", "9412ec2fd86e5bd8a69c359da63744d8")
                 .AddQueryParameter("token", "868e793c460a02759265b6da6ab8f535c08653d91045ae4a06eff6adfe6fc2c2")
                 .AddUrlSegment("boardId", "63067787a84cf200b6d77500");
@@ -96,7 +85,7 @@ namespace GetBoardsTest
         [Test]
         public void CheckGetBoardWithOtherUsersKey()
         {
-            var request = new RestRequest("/1/boards/{boardId}")
+            var request = RequestWithoutAuth("/1/boards/{boardId}")
                 .AddQueryParameter("key", "9412ec2fd86e5bd8a69c359da63744d7")
                 .AddQueryParameter("token", "868e793c460a02759265b6da6ab8f535c08653d91045ae4a06eff6adfe6fc2c1")
                 .AddUrlSegment("boardId", "63067787a84cf200b6d77500");
