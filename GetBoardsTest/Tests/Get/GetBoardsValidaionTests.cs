@@ -12,7 +12,7 @@ namespace GetBoardsTest.Tests.Get
         [TestCaseSource(typeof(BoardIdValidationArgumentProvider))]
         public void CheckGetBoardWithInvalidID(BoardIdValidationArgumentsHolder validationArguments)
         {
-            var request = RequestWitAuth(BoardsEndpoints.GetABoardUrl)
+            var request = RequestWithAuth(BoardsEndpoints.GetABoardUrl)
                  .AddOrUpdateParameters(validationArguments.PathParams);
 
             var response = _client.Get(request);

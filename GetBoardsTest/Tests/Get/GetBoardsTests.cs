@@ -8,7 +8,7 @@ namespace GetBoardsTest.Tests.Get
         [Test]
         public void CheckGetBoards()
         {
-            var request = RequestWitAuth(BoardsEndpoints.GetBoardsUrl)
+            var request = RequestWithAuth(BoardsEndpoints.GetBoardsUrl)
                 .AddQueryParameter("fields", "id,name")
                 .AddUrlSegment("memberId", UrlParamValues.UserId);
 
@@ -25,7 +25,7 @@ namespace GetBoardsTest.Tests.Get
         [Test]
         public void CheckGetBoard()
         {
-            var request = RequestWitAuth(BoardsEndpoints.GetABoardUrl)
+            var request = RequestWithAuth(BoardsEndpoints.GetABoardUrl)
                  .AddQueryParameter("fields", "id,name")
                  .AddUrlSegment("boardId", UrlParamValues.BoardId);
 

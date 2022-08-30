@@ -10,7 +10,7 @@ namespace GetBoardsTest.Tests
         protected static void InitializeRestClient() =>
             _client = new RestClient("https://api.trello.com");
 
-        protected IRestRequest RequestWitAuth(string url) =>
+        protected IRestRequest RequestWithAuth(string url) =>
             RequestWithoutAuth(url)
                  .AddQueryParameter("key", UrlParamValues.Key)
                  .AddQueryParameter("token", UrlParamValues.Token);
