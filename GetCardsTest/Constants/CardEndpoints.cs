@@ -11,5 +11,9 @@ namespace GetCardsTest.Constants
         //for Post
         public const string CreateCardUrl = "/1/cards";
         public const string DeleteCardUrl = "/1/cards/{id}";
+
+        //for put
+
+        public const string UpdateCradUrl = "/1/cards/{cardId}";
     }
 }

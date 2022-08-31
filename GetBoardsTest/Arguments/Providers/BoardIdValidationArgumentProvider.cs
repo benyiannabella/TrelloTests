@@ -14,7 +14,7 @@ namespace GetBoardsTest.Arguments.Providers
                 {
                     ErrorMessage = "invalid id",
                     StatusCode = HttpStatusCode.BadRequest,
-                    PathParams = new[] {new Parameter("boardId", "invalid", ParameterType.UrlSegment)}
+                    PathParams = new[] {new Parameter("id", "invalid", ParameterType.UrlSegment)}
                 }
             };
 
@@ -24,7 +24,7 @@ namespace GetBoardsTest.Arguments.Providers
                 {
                     ErrorMessage = "The requested resource was not found.",
                     StatusCode = HttpStatusCode.NotFound,
-                    PathParams = new[] {new Parameter("boardId", "63067787a84cf200b6d77501", ParameterType.UrlSegment)}
+                    PathParams = new[] {new Parameter("boardId", "6305229b7fad4400600293fe", ParameterType.UrlSegment)}
                 }
             };
         }

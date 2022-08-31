@@ -27,12 +27,12 @@ namespace GetBoardsTest.Tests.Get
         {
             var request = RequestWithAuth(BoardsEndpoints.GetABoardUrl)
                  .AddQueryParameter("fields", "id,name")
-                 .AddUrlSegment("boardId", UrlParamValues.BoardId);
+                 .AddUrlSegment("boardId", UrlParamValues.BoardIdGet);
 
             var response = _client.Get(request);
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            Assert.That(JToken.Parse(response.Content).SelectToken("name").ToString, Is.EqualTo("My New board"));
+            Assert.That(JToken.Parse(response.Content).SelectToken("name").ToString, Is.EqualTo("MyTestBoard"));
 
             var responseContent = JToken.Parse(response.Content);
             var jsonSchema = JSchema.Parse

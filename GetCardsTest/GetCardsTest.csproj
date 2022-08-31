@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Tests\Delete\" />
-    <Folder Include="Tests\Put\" />
   </ItemGroup>
 
   <ItemGroup>

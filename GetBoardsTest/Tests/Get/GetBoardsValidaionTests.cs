@@ -39,7 +39,7 @@ namespace GetBoardsTest.Tests.Get
         public void CheckGetBoardWithOtherUsersToken(BoardIdValidationArgumentsHolder boardIdValidationArguments)
         {
             var request = RequestWithoutAuth(BoardsEndpoints.GetABoardUrl)
-                .AddUrlSegment("boardId", UrlParamValues.BoardId)
+                .AddUrlSegment("boardId", UrlParamValues.BoardIdGet)
                 .AddOrUpdateParameters(boardIdValidationArguments.PathParams);
 
             var response = _client.Get(request);
